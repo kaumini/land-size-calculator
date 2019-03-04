@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
+import { User } from '../../models/User'
 
 @Component({
   selector: 'app-signup',
@@ -6,16 +8,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-
-  constructor() { }
+  constructor(private auth: AuthService) {
+  }
+   name:string;
+   email:string;
+   password:string;
+   cpassword:string;
 
   ngOnInit() {
   }
 
-  Signup(event) {
-    event.preventDefault()
-    const target = event.target
-    
-
+  Signup() {
+    const user:User= {
+      name: this.name,
+      email: this.email,
+      password: this.password,
+      premium: false
+    }
+    this.auth.signup(user).subscribe(data => {
+      console.log(data)
+    });
   }
 }

@@ -1,7 +1,11 @@
-const Logger = require('./logger');
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
 
-const logger = new Logger();
+app.use(bodyParser.json())
 
-logger.on('message', data => console.log('Called Listener', data));
+app.post('/api/signup', (req, res) => {
+    console.log(req.body)
+})
 
-logger.log('Hello world');
+app.listen(1234, () => console.log('Server listening at 1234'))

@@ -9,12 +9,16 @@ import { SignupComponent } from './components/signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AuthService } from './services/auth.service';
+import { HomeComponent } from './components/home/home.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    HomeComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,

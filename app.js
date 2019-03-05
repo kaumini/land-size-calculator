@@ -1,10 +1,12 @@
 var express = require('express');
+var cors = require('cors');
 var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 app.use(express.static('F:/CSE ACA/my stuff/Semester 5/Software Engineering Project/project_calculator/client'));
 app.use(bodyParser.json());
+app.use(cors());
 
 Calculations = require('./models/calculations');
 Users = require('./models/users');
@@ -47,6 +49,7 @@ app.get('/api/users', function(req, res){
 
 app.post('/api/users', function(req, res){
 	var user = req.body;
+	console.log(user);
 	Users.addUser(user, function(err, user){
 		if(err){
 			throw err;

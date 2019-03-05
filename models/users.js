@@ -2,10 +2,6 @@ const mongoose = require('mongoose');
 
 //Book Schema
 const collectionSchema = mongoose.Schema({
-	uid:{
-		type: Number,
-		required: true
-	},
 	name:{
 		type: String,
 		required: true
@@ -23,6 +19,7 @@ const collectionSchema = mongoose.Schema({
 		required: true
 	}
 });
+
 
 const Users = module.exports = mongoose.model('users', collectionSchema);
 

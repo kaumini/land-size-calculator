@@ -16,11 +16,11 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  Login() {
+  // Login() {
   
-    this.auth.signup(user).subscribe(data => {
-      console.log(data)
-    });
-  }
+  //   this.auth.signup(user).subscribe(data => {
+  //     console.log(data)
+  //   });
+  // }
 
 }

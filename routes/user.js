@@ -1,9 +1,9 @@
 const express = require('express');
-const router = express.router();
-const Users = require ('../controllers/users.js');
+const router = express.Router();
+const Users = require ('../controllers/userController.js');
 const passport = require('passport');
 
-router.post('/api/users',(req,res)=>{
+router.post('/createUsers',(req,res)=>{
     console.log('done');
     return Users.addUser(req,res);
 });

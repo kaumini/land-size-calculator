@@ -12,7 +12,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-  Url:string = "http://localhost:3000/api/users";
+  Url:string = "http://localhost:3000/createUsers";
 
   constructor(private http:HttpClient) { }
 

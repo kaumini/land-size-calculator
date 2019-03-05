@@ -6,19 +6,22 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Calculator</title><link rel="stylesheet" src="../home.component.css">
-    <style>
-      #sign{
-        width: 70%;
-      }
-    </style>
 </head>
 <body>
-  <div class="container">
+  <app-header></app-header>
     <div class="container-fluid" id="log">
       <form action="" class="form" (ngSubmit)="Login()">
-          <input type="text" name="name" [(ngModel)]="name" placeholder="Enter your Username" required>
+            <div class="form-group">
+              <label for="inputName" class="sr-only">Username</label>
+              <input type="text" id="inputName" name="name" [(ngModel)]="name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+              <label for="inputPassword" class="sr-only">password</label>
+              <input type="text" id="inputPassword" name="password" [(ngModel)]="password" placeholder="Enter password" required>
+            </div>
+            <input type="submit" value="Login" class="btn-primary">
+          <!-- <input type="text" name="name" [(ngModel)]="name" placeholder="Enter your Username" required>
           <input type="text" name="password" [(ngModel)]="password" placeholder="Enter password" required>
-          <input type="submit" value="Signup" class="btn-primary">
+          <input type="submit" value="Signup" class="btn-primary"> -->
       </form>
-  </div>
-</div>
+    </div>

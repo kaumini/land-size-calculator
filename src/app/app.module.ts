@@ -11,7 +11,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { HomeComponent } from './components/home/home.component';
 import { PaymentComponent } from './payment/payment.component';
-import { HeaderComponent } from './components/header/header.component';
+import { HeaderComponent } from './components/layout/header/header.component';
+import { AgmCoreModule } from '@agm/core';
+import { NavbarComponent } from './components/layout/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -20,13 +22,18 @@ import { HeaderComponent } from './components/header/header.component';
     SignupComponent,
     HomeComponent,
     PaymentComponent,
-    HeaderComponent
+    HeaderComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDAcszHq1T04XcAuNpguUvldlMW2xMLXa8 '
+
+    })
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

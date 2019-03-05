@@ -1,80 +1,44 @@
-<!DOCTYPE html>
-<html ng-app="myApp">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Calculator</title>
-    <style>
+<app-navbar></app-navbar>
+<agm-map id="map" [latitude]="lat" [longitude]="lng" mapTypeId="hybrid" [zoom]=7>
+  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+</agm-map>
 
+
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
       #map {
-        height: 700px;
-        width: 100%;
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
       }
     </style>
-</head>
-<body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark navbar-default">
-        <a class="navbar-brand" href="#">Land Size Calculator</a>
-        
-      
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-          <ul class="navbar-nav ">
-            <li class="nav-item">
-              <a class="nav-link" href="#/user/view">Calculations <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#/user/buy">Buy Premium</a>
-            </li>
-            
-            
-          </ul>
-          <ul class="navbar-nav ml-auto ">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown01">
-                <a class="dropdown-item" href="#">Edit Details</a>
-                <a class="dropdown-item" href="#">Log out</a>
-              </div>
-            </li>
-          </ul>
-          
-        </div>
-      </nav>
-      
-      <main role="main" class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div ng-view></div>
-            </div>
-        </div>
-       
-      
-      </main><!-- /.container -->
-    
-    <div id="map">
-      
+  </head>
+  <body>
+    <div id="map"></div>
     <script>
+      var map;
       function initMap() {
-        var location = {lat: 7.8731, lng: 80.7718};
-        var map = new google.maps.Map(document.getElementById("map"),{
-          zoom: 4,
-          center: location
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 8
         });
       }
-     </script> 
-     </div>
-
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0Avje7JmeGuQ7HaIYoaOihszGXc5efNc&callback=initMap">
     </script>
-    <script src="F:/CSE ACA/my stuff/Semester 5/Software Engineering Project/project_calculator/node_modules/popper.js/dist/umd/popper.min.js"></script>
-    <script src="F:/CSE ACA/my stuff/Semester 5/Software Engineering Project/project_calculator/node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="C:/Users/Kaumini/AppData/Roaming/npm/node_modules/angular/angular.js"></script>
-    <script src="F:/CSE ACA/my stuff/Semester 5/Software Engineering Project/project_calculator/node_modules/angular-route.js"></script>
-    <script src="F:/CSE ACA/my stuff/Semester 5/Software Engineering Project/project_calculator/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="/app.js"></script>
-    <script src="/controller/Users.js"></script>
-    <script src="/controller/Calculations.js"></script>
-    
-</body>
+
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0Avje7JmeGuQ7HaIYoaOihszGXc5efNc">
+    </script>
+  </body>
+</html> -->

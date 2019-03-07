@@ -2,6 +2,8 @@
  const uuidv1 = require('uuid/v1');
  const bcrypt = require('bcrypt');
  const express = require("express");
+ const jwt = require('jsonwebtoken');
+ const  {secret} = require("../env_config");
 
  const router = express.Router();
 
@@ -17,8 +19,11 @@
 // };
 
 exports.addUser = (req, res) => {
+	var generatedUid=uuidv1();
+
 	//save user document
 	let user = new user_info({
+		uid : generatedUid,
 		name: req.body.name,
 		email: req.body.email,
 		password: req.body.password,
@@ -42,6 +47,57 @@ exports.addUser = (req, res) => {
         
 	});
 };
+
+exports.loginUser = (req, res) => {
+	let loginPassword = req.body.password;
+	
+	user_info.findOne({ name : req.body.name }, (err, user) => {
+		if (err) {
+			let msg = {
+				success : false,
+				msg : err
+			}
+			res.status(500).json(msg);
+		}
+		else {
+			if(user) {
+				let uid = user.uid;
+				if (loginPassword==user.password) {
+					jwt.sign({uid: user.uid}, 'shhhhh', (err, token) => {
+						if (err) {
+							let msg = {
+								success : false,
+								msg : "whatever"
+							}
+							res.status(401).json(msg);
+						} 
+						else {
+							let msg = {
+								success : true,
+								msg : [uid, token,user]
+							}
+							res.status(200).json(msg);
+						}
+					});
+				}
+				else {
+					let msg = {
+						success : false,
+						msg : "invalid email/password"
+					}
+					res.status(401).json(msg);
+				}
+			}
+			else {
+				msg = {
+					success : false,
+					msg : "User not found"
+				}
+				res.status(401).json(msg);
+			}
+		}
+	});
+}
 
 // // get userDetails
 // module.exports.getuser_infoById = function(id, callback){

@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 
 //Book Schema
 const collectionSchema = mongoose.Schema({
+	uid:{
+		type: String,
+		required: true
+	},
 	name:{
 		type: String,
 		required: true

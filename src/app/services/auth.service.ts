@@ -21,5 +21,10 @@ export class AuthService {
     console.log(`${user.name}  ${user.password}  ${user.premium}`)
     return this.http.post<User>(this.Url, user, httpOptions)
   }
+
+  login(user) {
+    console.log(`${user.name}  ${user.password}`)
+    return this.http.post("http://localhost:3000/user/login", user, httpOptions)
+  }
 }
  

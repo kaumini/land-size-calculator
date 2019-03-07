@@ -16,11 +16,24 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  // Login() {
+  Login() {
+    const user= {
+      name: this.name,
+      password: this.password
+    }
+    this.auth.login(user).subscribe(data => {
+      console.log(data)
+    });
+  }
+        
+
+        
+
   
   //   this.auth.signup(user).subscribe(data => {
   //     console.log(data)
   //   });
   // }
+  
 
 }

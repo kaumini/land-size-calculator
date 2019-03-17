@@ -12,4 +12,9 @@ router.post('/login', (req, res) => {
     Users.loginUser(req, res);
 });
 
+router.post('/verifyUser',passport.authenticate('jwt', { session: false }),(req,res)=>{
+    return LogIn.verifyUser(req,res);
+});
+
+
 module.exports = router;

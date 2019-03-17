@@ -25,6 +25,7 @@ export class AuthService {
   login(user) {
     console.log(`${user.name}  ${user.password}`)
     return this.http.post("http://localhost:3000/user/login", user, httpOptions)
+    
   }
 }
  

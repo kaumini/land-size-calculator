@@ -99,6 +99,27 @@ exports.loginUser = (req, res) => {
 	});
 }
 
+exports.verifyUser = (req, res) => {
+	jwt.verify(req.body.token, 'shhhhh', (err, authorizedData) => {
+		if(err){
+			//if error 
+			let msg = {
+				success : false,
+				msg : "not allowed", err
+			}
+			res.status(403).json(msg);
+		}
+		else {
+			//if token is verified
+			let msg = {
+				success : true,
+				msg : authorizedData
+			}
+			res.status(200).json;
+		}
+	});
+}
+
 // // get userDetails
 // module.exports.getuser_infoById = function(id, callback){
 // 	user_info.findById(id, callback);

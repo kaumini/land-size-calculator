@@ -1,6 +1,17 @@
 <app-navbar></app-navbar>
-<agm-map id="map" [latitude]="lat" [longitude]="lng" mapTypeId="hybrid" [zoom]=7>
-  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+<agm-map id="map" [latitude]="lat" [longitude]="lng" mapTypeId="hybrid" [zoom]=7 (mapClick)="placeMarker($event)">
+  <agm-marker *ngFor="let m of markers; "
+  [latitude]="m.lat"
+  [longitude]="m.lng">
+</agm-marker>
+<!-- <agm-polyline [strokeColor]="red">
+  <ng-container *ngFor="let m of markers; ">
+    <agm-polyline-point  [latitude]="m.lat" [longitude]="m.lng">
+    </agm-polyline-point>
+</ng-container>
+</agm-polyline> -->
+<agm-polygon [paths]="paths">
+</agm-polygon>
 </agm-map>
 
 

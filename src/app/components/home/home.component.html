@@ -2,17 +2,33 @@
 <agm-map id="map" [latitude]="lat" [longitude]="lng" mapTypeId="hybrid" [zoom]=7 (mapClick)="placeMarker($event)">
   <agm-marker *ngFor="let m of markers; "
   [latitude]="m.lat"
-  [longitude]="m.lng">
+  [longitude]="m.lng"
+  [markerDraggable]="true"
+  (dragEnd)="markerDragEnd(markers.indexOf(m),$event)">
 </agm-marker>
-<!-- <agm-polyline [strokeColor]="red">
+<agm-polyline [strokeColor]="red">
   <ng-container *ngFor="let m of markers; ">
     <agm-polyline-point  [latitude]="m.lat" [longitude]="m.lng">
     </agm-polyline-point>
 </ng-container>
-</agm-polyline> -->
-<agm-polygon [paths]="paths">
+</agm-polyline>
+<agm-polygon [paths]="markers" [strokeColor]="'#083478'">
 </agm-polygon>
+<!-- <agm-polygon *ngFor='let path of paths'  [strokeColor]="'#083478'" [strokeWeight]="4" [paths]="path">
+              </agm-polygon> -->
 </agm-map>
+
+<div class="btn-group btn-group-toggle">
+<label class="btn-primary" ngbButtonLabel>
+  <button type="button" class="btn btn-primary" (click)="deleteLastPoint()">Delete Last Point</button>
+</label>  
+<label class="btn-primary" ngbButtonLabel>
+    <button type="button" class="btn btn-primary" (click)="clearPoints()">Clear all ponits</button>
+  </label>
+<label class="btn-primary" ngbButtonLabel>
+  <button type="button" class="btn btn-primary" (click)="calculate()">Calculate</button>
+</label>
+</div>
 
 
 <!-- <!DOCTYPE html>

@@ -27,7 +27,8 @@ exports.addUser = (req, res) => {
 		name: req.body.name,
 		email: req.body.email,
 		password: req.body.password,
-		premium: req.body.premium
+		premium: false,
+		tries: 0
 	});
 	user.save(function (err){
         if(err){
@@ -76,6 +77,7 @@ exports.loginUser = (req, res) => {
 								success : true,
 								msg : [uid, token,user]
 							}
+							console.log(msg);
 							res.status(200).json(msg);
 						}
 					});

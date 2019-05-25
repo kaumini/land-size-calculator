@@ -21,6 +21,10 @@ const collectionSchema = mongoose.Schema({
 	premium:{
 		type: Boolean,
 		required: true
+	},
+	tries:{
+		type: Number,
+		required: true
 	}
 });
 

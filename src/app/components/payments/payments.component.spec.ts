@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SignupComponent } from './signup.component';
+import { PaymentsComponent } from './payments.component';
 
-describe('SignupComponent', () => {
-  // let component: SignupComponent;
-  // let fixture: ComponentFixture<SignupComponent>;
+describe('PaymentsComponent', () => {
+  // let component: PaymentsComponent;
+  // let fixture: ComponentFixture<PaymentsComponent>;
 
   // beforeEach(async(() => {
   //   TestBed.configureTestingModule({
-  //     declarations: [ SignupComponent ]
+  //     declarations: [ PaymentsComponent ]
   //   })
   //   .compileComponents();
   // }));
 
   // beforeEach(() => {
-  //   fixture = TestBed.createComponent(SignupComponent);
+  //   fixture = TestBed.createComponent(PaymentsComponent);
   //   component = fixture.componentInstance;
   //   fixture.detectChanges();
   // });
@@ -24,6 +24,9 @@ describe('SignupComponent', () => {
   // });
 
   it('should create', () => {
+  });
+
+  it('should disble buy button for invalid credentials', () => {
   });
 
   it('should call the service wen submitted', () => {

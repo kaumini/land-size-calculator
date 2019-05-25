@@ -1,3 +1,6 @@
+//const stripeSecretKey = process.env.STRIPE_SECRET_KEY
+
+
 var express = require('express');
 var cors = require('cors');
 var app = express();
@@ -18,8 +21,13 @@ app.listen(3000);
 console.log('Running on port 3000....'); 
 
 const user = require('./routes/user.js');
+const payment = require('./routes/payment.js');
+const calculation = require('./routes/calculation.js');
 
 app.use('/user',user);
+app.use('/payment',payment);
+app.use('/calculation',calculation);
+
 
 // app.get('/', function(req, res){
 // 	res.send('Please use /api/users');

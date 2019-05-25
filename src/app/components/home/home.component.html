@@ -1,33 +1,79 @@
-<app-navbar></app-navbar>
-<agm-map id="map" [latitude]="lat" [longitude]="lng" mapTypeId="hybrid" [zoom]=7 (mapClick)="placeMarker($event)" >
-  <agm-marker *ngFor="let m of markers; "
-  [latitude]="m.lat"
-  [longitude]="m.lng"
-  [markerDraggable]="true"
-  (dragEnd)="markerDragEnd(markers.indexOf(m),$event)">
-</agm-marker>
-<!-- <agm-polyline [strokeColor]="red">
-  <ng-container *ngFor="let m of markers; ">
-    <agm-polyline-point  [latitude]="m.lat" [longitude]="m.lng">
-    </agm-polyline-point>
-</ng-container>
-</agm-polyline> -->
-<agm-polygon [paths]="markers" [strokeColor]="'#083478'" *ngFor="let m of markers "  [clickable]="true" [editable]="true" (polyMouseUp)="polyMouseUp(item,$event)" [visible]="markers.indexOf(m)==(markers.length-1)">
-</agm-polygon>
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Calculator</title>
+</head>
+<body>
 
-</agm-map>
+  <app-navbar></app-navbar>
+  <agm-map id="map" [latitude]="lat" [longitude]="lng" mapTypeId="hybrid" [zoom]=7 (mapClick)="placeMarker($event)" >
+    <div *ngIf="markers.length>0">
+    <agm-marker
+    [latitude]="markers[0].lat"
+    [longitude]="markers[0].lng"
+    [markerClickable]="true"
+    (markerClick)="markerClicked($event)"
+    (dragEnd)="markerDragEnd(markers.indexOf(m),$event)">
+    <!-- <agm-polyline>
+        <agm-polyline-point [latitude]="m.lat" [longitude]="m.lng">
+        </agm-polyline-point>
+    </agm-polyline> -->
+  </agm-marker>
+  </div>
+  <agm-polyline >
+    <ng-container *ngFor="let m of markers; ">
+      <agm-polyline-point  [latitude]="m.lat" [longitude]="m.lng">
+      </agm-polyline-point>
+  </ng-container>
+  </agm-polyline>
+  <div *ngIf="completed">
+    <agm-polygon [paths]="markers" [strokeColor]="'#black'" *ngFor="let m of markers "  [clickable]="true"  [visible]="markers.indexOf(m)==(markers.length-1)" >
+    </agm-polygon>
+  </div>
+  </agm-map>
 
-<div class="btn-group btn-group-toggle">
-<label class="btn-primary" ngbButtonLabel>
-  <button type="button" class="btn btn-primary" (click)="deleteLastPoint()">Delete Last Point</button>
-</label>  
-<label class="btn-primary" ngbButtonLabel>
-    <button type="button" class="btn btn-primary" (click)="clearPoints()">Clear all ponits</button>
-  </label>
-<label class="btn-primary" ngbButtonLabel>
-  <button type="button" class="btn btn-primary" (click)="calculate()">Calculate</button>
-</label>
-</div>
+  
+
+  <div class="btn-group btn-group-toggle">
+   <div *ngIf="markers.length>0">
+  <label class="btn-primary" ngbButtonLabel>
+    <button type="button" class="btn btn-primary" (click)="deleteLastPoint()">Delete Last Point</button>
+  </label>  
+  <label class="btn-primary" ngbButtonLabel>
+      <button type="button" class="btn btn-primary" (click)="clearPoints()">Clear all ponits</button>
+    </label>
+  </div> 
+  <div *ngIf="completed">
+    <div *ngIf="try!=0">
+    <label class="btn-primary" ngbButtonLabel>
+      <button type="button" class="btn btn-primary" (click)="calculate()">Calculate</button>
+    </label>
+  </div>
+  </div>
+  </div>
+
+  <div *ngIf="!ispremium">
+    <p>Number of tries remaining: {{try}}
+    </p>
+  </div>
+
+  <div class="jumbotron" *ngIf="calculated">
+    <h5>Area: {{areaM2}} m<sup>2</sup> | 
+    {{areaKm2}} km<sup>2</sup> | 
+    {{areaHectares}} hectares | 
+    {{areaFeet2}} feet<sup>2</sup> | 
+    {{areaMiles2}} square miles | 
+    {{areaAcres}} acres
+    </h5>
+  </div>
+</body>
+</html>
+
+
 
 <!-- <!DOCTYPE html>
 <html>

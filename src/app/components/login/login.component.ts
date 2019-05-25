@@ -27,8 +27,10 @@ export class LoginComponent implements OnInit {
     this.auth.login(user).subscribe(
       data => {
       // login successful redirect to home
-        var token = data;
-        console.log(data);
+        var data1= JSON.stringify(data);
+        var token = JSON.parse(data1).msg;
+        localStorage.setItem('access_token', JSON.stringify(token));
+        console.log(token);
         this.router.navigateByUrl('home');
         
       },

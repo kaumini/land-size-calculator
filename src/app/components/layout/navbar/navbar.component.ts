@@ -9,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
 
 
 export class NavbarComponent implements OnInit {
-  token = JSON.parse(localStorage.getItem('access_token'));
-  ispremium = this.token[2].premium;
+  token;
+  ispremium;
 
-  constructor() { }
+  constructor() { 
+    this.token = JSON.parse(localStorage.getItem('access_token'));
+    if(this.token){
+      this.ispremium = this.token[2].premium;
+    }  
+  }
 
   ngOnInit() {
   }

@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
       error => {
         console.log(error);
         this.router.navigated = false;
+        alert("invalid username or password");
         // login failed so display error
         
       }

@@ -12,13 +12,14 @@ import { Calcu } from '../../models/calcu';
 export class PreviousCalComponent implements OnInit {
   clicked = false;
   calculations = []; 
-  token = JSON.parse(localStorage.getItem('access_token'));
-  uid = this.token[0];
+  token;
+  uid;
 
   constructor(private calservice: CalculationService) { 
-    // var token = JSON.parse(localStorage.getItem('access_token'));
-    // var uid = token[0];
-    // this.calculationsObservable = this.calservice.getCal(uid);
+    this.token = JSON.parse(localStorage.getItem('access_token'));
+    if(this.token){
+      this.uid = this.token[0];
+    }  
   }
 
   ngOnInit() {

@@ -24,19 +24,21 @@ areaFeet2;
 areaMiles2;
 areaAcres;
 try;
-
+token; 
 calculated = false;
 completed = false;
+ispremium;
+uid;
 
-token = JSON.parse(localStorage.getItem('access_token'));
-ispremium = this.token[2].premium;
-uid = this.token[0];
 
 constructor(
   private calservice: CalculationService,
   private router: Router) {
-    console.log(this.token);
-    console.log(this.try);
+    this.token = JSON.parse(localStorage.getItem('access_token'));
+    if(this.token){
+      this.ispremium = this.token[2].premium;
+      this.uid = this.token[0];
+    }  
 }
 
   ngOnInit() {

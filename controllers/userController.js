@@ -20,13 +20,14 @@
 
 exports.addUser = (req, res) => {
 	var generatedUid=uuidv1();
-
+	let hash = bcrypt.hashSync(req.body.password, 10);
+	
 	//save user document
 	let user = new user_info({
 		uid : generatedUid,
 		name: req.body.name,
 		email: req.body.email,
-		password: req.body.password,
+		password: hash,
 		premium: false,
 		tries: 0
 	});
@@ -63,7 +64,7 @@ exports.loginUser = (req, res) => {
 		else {
 			if(user) {
 				let uid = user.uid;
-				if (loginPassword==user.password) {
+				if (bcrypt.compareSync(loginPassword, user.password)) {
 					jwt.sign({uid: user.uid}, 'shhhhh', (err, token) => {
 						if (err) {
 							let msg = {
@@ -78,7 +79,6 @@ exports.loginUser = (req, res) => {
 								tries: user.tries,
 								msg : [uid, token,user]
 							}
-							console.log(msg);
 							res.status(200).json(msg);
 						}
 					});

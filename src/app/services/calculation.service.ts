@@ -1,9 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 
+let token;
+
+if(JSON.parse(localStorage.getItem('access_token'))){
+  token = JSON.parse(localStorage.getItem('access_token'))[1];
+}else{
+  token =  "ieghknty";
+}
+
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'x-auth' : token
   })
 }
 
@@ -21,10 +30,6 @@ export class CalculationService {
   }
 
   getCal(uid){
-    return this.http.get('http://localhost:3000/calculation/getCalculations', uid);
-  }
-  
-  updateTries(tries){
-    return this.http.post('http://localhost:3000/calculation/updateTries', tries, httpOptions);
+    return this.http.get('http://localhost:3000/calculation/getCalculations',httpOptions);
   }
 }

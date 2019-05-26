@@ -23,6 +23,7 @@ exports.pay =async (req, res) => {
         const uid = req.body.uid;
         const user= await User.findOne({uid:req.body.uid});
         user.premium = true;
+        user.tries = 0;
         const token = await jwt.sign({uid: user.uid}, 'shhhhh').toString();
         console.log(token);
         // let msg = {

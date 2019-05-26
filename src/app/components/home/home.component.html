@@ -48,7 +48,7 @@
     </label>
   </div> 
   <div *ngIf="completed">
-    <div *ngIf="try!=5">
+    <div *ngIf="5>=try || ispremium ">
     <label class="btn-primary" ngbButtonLabel>
       <button type="button" class="btn btn-primary" (click)="calculate()">Calculate</button>
     </label>
@@ -58,6 +58,8 @@
 
   <div *ngIf="!ispremium">
     <p>Number of tries remaining: {{5-try}}
+    </p>
+    <p>Buy Premium for unlimited tries
     </p>
   </div>
 

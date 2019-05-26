@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
+
+
 export class NavbarComponent implements OnInit {
   token = JSON.parse(localStorage.getItem('access_token'));
   ispremium = this.token[2].premium;
@@ -16,7 +18,8 @@ export class NavbarComponent implements OnInit {
   }
 
   logout(){
-    localStorage.clear();
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('tries');
   }
 
 }

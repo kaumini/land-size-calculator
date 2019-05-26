@@ -6,10 +6,13 @@ var cors = require('cors');
 var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var morgan = require('morgan')
 
 app.use(express.static('F:/CSE ACA/my stuff/Semester 5/Software Engineering Project/project_calculator/client'));
 app.use(bodyParser.json());
 app.use(cors());
+app.use(morgan('tiny'));
+
 
 Calculations = require('./models/calculations');
 Users = require('./models/users');

@@ -256,9 +256,6 @@ constructor(
       uid: this.uid,
       tries: tries
     }
-    
-    this.calservice.updateTries(aa).subscribe(data => {
-    });
 
     localStorage.setItem('tries',tries);
 

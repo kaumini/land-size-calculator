@@ -1,5 +1,5 @@
 const calculation_info = require('../models/calculations');
-const user_info = require('../models/users');
+const User = require('../models/users');
 const uuidv1 = require('uuid/v1');
 const bcrypt = require('bcrypt');
 const express = require("express");
@@ -18,7 +18,7 @@ exports.saveCalculation = (req, res) => {
 		area: req.body.area
 	});
 	console.log(data);
-	data.save(function (err){
+	data.save(async function (err){
         if(err){
             let msg = {
                 success : false,
@@ -27,10 +27,20 @@ exports.saveCalculation = (req, res) => {
             res.status(500).json(msg);
 		}
 		else{
+			// let msg = {
+			// 	success : true,
+			// 	msg : "success"
+			// }
+			// res.status(200).json(msg);
+			const uid = req.body.uid;
+			const user= await User.findOne({uid:req.body.uid});
+			const token = await jwt.sign({uid: user.uid}, 'shhhhh').toString();
+			console.log(token);
 			let msg = {
 				success : true,
-				msg : "success"
+				msg : [uid, token,user]
 			}
+			console.log(msg);
 			res.status(200).json(msg);
 		}
         
@@ -53,17 +63,20 @@ exports.getCalculations = (req, res) => {
 	});
 };
 
-exports.updateTries = (req, res) => {
-	_uid = req.body.uid;
-	_tries = req.body.tries;
+exports.updateTries = async (req, res) => {
 	// db.collection("customers").updateOne({uid:_uid}, {$set: {tries:_tries}}, function(err, res) {
 	// 	if (err) throw err;
 	// 	console.log("1 document updated");
 	// 	db.close();
 	//   });
-	user_info.update({uid:_uid}, {$set: {tries:_tries}});
-	res.json({
+	const tries = req.body.tries;
+	const uid = req.body.uid;
+	console.log(tries);
+	const user= await User.findOne({uid:req.body.uid});
+	user.tries = tries;
+	let msg = {	
 		success : true,
-		message : "Payment Done"
-	})
+	}
+	await user.save();
+	res.status(200).json(msg);
 };

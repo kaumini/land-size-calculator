@@ -14,7 +14,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '', component: HeaderComponent },
   { path: 'user/buy', component: PaymentsComponent },
-  { path: 'user/calculations', component: PreviousCalComponent}
+  { path: 'user/calculations', component: PreviousCalComponent},
+  { path: '**', component: HomeComponent}
 ];
 
 @NgModule({

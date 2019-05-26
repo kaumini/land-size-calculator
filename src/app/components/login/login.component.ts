@@ -29,8 +29,11 @@ export class LoginComponent implements OnInit {
       // login successful redirect to home
         var data1= JSON.stringify(data);
         var token = JSON.parse(data1).msg;
+        var tries = JSON.parse(data1).tries;
         localStorage.setItem('access_token', JSON.stringify(token));
+        localStorage.setItem('tries', JSON.stringify(tries));
         console.log(token);
+        console.log(tries);
         this.router.navigateByUrl('home');
         
       },

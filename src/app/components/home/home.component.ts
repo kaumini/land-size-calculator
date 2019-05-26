@@ -23,13 +23,13 @@ areaHectares;
 areaFeet2;
 areaMiles2;
 areaAcres;
+try;
 
 calculated = false;
 completed = false;
 
 token = JSON.parse(localStorage.getItem('access_token'));
 ispremium = this.token[2].premium;
-try = 5-this.token[2].tries;
 uid = this.token[0];
 
 constructor(
@@ -40,6 +40,7 @@ constructor(
 }
 
   ngOnInit() {
+   this.try = JSON.parse(localStorage.getItem('tries'));
   }
   
 
@@ -249,7 +250,8 @@ constructor(
 
     this.calservice.save(data).subscribe(data => {
     });
-    var tries =this.token[2].tries+1;
+    var tries =JSON.parse(localStorage.getItem('tries'))+1;
+    this.try = this.try+1;
     var aa = {
       uid: this.uid,
       tries: tries
@@ -257,6 +259,8 @@ constructor(
     
     this.calservice.updateTries(aa).subscribe(data => {
     });
+
+    localStorage.setItem('tries',tries);
 
   }
 

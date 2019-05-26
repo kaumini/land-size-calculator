@@ -75,8 +75,14 @@ export class PaymentsComponent implements OnInit {
             res => {
               console.log("The response from server is ",res);
               console.log('Payment Done');
+              var data1= JSON.stringify(res);
+              var token = JSON.parse(data1).msg;
+              localStorage.setItem('access_token', JSON.stringify(token));
               this.router.navigateByUrl('home');
               console.log(obj, uid);
+
+              token = JSON.parse(localStorage.getItem('access_token'));
+              console.log(token);
               
             },
             error => {

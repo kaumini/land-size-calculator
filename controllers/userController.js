@@ -75,6 +75,7 @@ exports.loginUser = (req, res) => {
 						else {
 							let msg = {
 								success : true,
+								tries: user.tries,
 								msg : [uid, token,user]
 							}
 							console.log(msg);

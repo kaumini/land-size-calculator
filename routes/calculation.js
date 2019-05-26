@@ -3,11 +3,11 @@ const router = express.Router();
 const Calculations = require ('../controllers/calculationController.js');
 const passport = require('passport');
 
-router.post('/saveCalculation', (req, res) => {
+router.post('/saveCalculation',async (req, res) => {
     Calculations.saveCalculation(req, res);
 });
 
-router.post('/updateTries', (req, res) => {
+router.post('/updateTries',async (req, res) => {
     Calculations.updateTries(req, res);
 });
 

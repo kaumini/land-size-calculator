@@ -1,4 +1,4 @@
-const user_info = require('../models/users');
+const User = require('../models/users');
 const uuidv1 = require('uuid/v1');
 const bcrypt = require('bcrypt');
 const express = require("express");
@@ -9,22 +9,34 @@ const stripe = require('stripe')('sk_test_v7gXLbxH1k5vgaJ9JCeXZVNf00O3LZBWs3');
 
 const router = express.Router();
 
-exports.pay = (req, res) => {
-    console.log('This body is ', req.body);
-    console.log(req.body.uid);
+exports.pay =async (req, res) => {
     var charge = stripe.charges.create({
         amount: 500,
         currency: 'gbp',
         source: req.body.token
-    },(err,charge) => {
+    },async (err,charge) => {
         if(err){
-            throw err;
+            res.json({
+
+            })
         }
-        console.log(req.body.uid);
-        user_info.update({name:req.body.uid}, {$set: {premium:true}});
-        res.json({
+        const uid = req.body.uid;
+        const user= await User.findOne({uid:req.body.uid});
+        user.premium = true;
+        const token = await jwt.sign({uid: user.uid}, 'shhhhh').toString();
+        console.log(token);
+        // let msg = {
+        //     success : true,
+        //     token : [uid, token,user]
+        // }
+        // user.save().then(()=>{
+        //     res.json({msg})
+        // })
+        let msg = {
             success : true,
-            message : "Payment Done"
-        })
+            msg : [uid, token,user]
+        }
+        console.log(msg);
+        res.status(200).json(msg);
     });
 };

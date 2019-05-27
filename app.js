@@ -39,8 +39,8 @@ app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/land-size-calculator/index.html'));
 });
 
-app.listen(8081, function(){
-    console.log(`Running on port 8081....`); 
+app.listen(80, function(){
+    console.log(`Running on port 80....`); 
 });
 
 

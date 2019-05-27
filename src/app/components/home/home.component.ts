@@ -1,6 +1,5 @@
 import { Component, OnInit, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { CalculationService } from '../../services/calculation.service';
-import { Point } from '../../models/Point';
 import { Marker } from '../../models/marker';
 
 import { AgmCoreModule } from '@agm/core'; 

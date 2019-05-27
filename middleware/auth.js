@@ -6,7 +6,7 @@ const authenticate = (req,res,next)=>{
     if(!token){
         res.status(401).send({message:'Authentication needed \n No token provided'});
     }
-    console.log(token);
+    console.log(token+"nnnnn");
     User.findByToken(token).then((user)=>{
         if(!user){
             throw new Error('Authentication needed \n Not a user');

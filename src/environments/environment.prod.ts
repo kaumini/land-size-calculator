@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  url: "https://land-size.herokuapp.com"
+  url: "http://land-size.herokuapp.com"
 };

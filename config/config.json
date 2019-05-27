@@ -1,3 +1,3 @@
 {
-    "dbUrl" : "mongodb://localhost/landcalculator"
+    "dbUrl" : "mongodb+srv://kaumini:kaumini@kaumini-pazvt.mongodb.net/test?retryWrites=true"
 }

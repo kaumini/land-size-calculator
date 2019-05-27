@@ -10,18 +10,30 @@
 <body>
   <app-header></app-header>
     <div class="container-fluid" id="log">
-      <form action="" class="form" (ngSubmit)="Login()">
+      <form action="" class="form" (ngSubmit)="Login()"  #f="ngForm" >
+
+            <!-- username -->
             <div class="form-group">
               <label for="inputName" class="sr-only">Username</label>
-              <input type="text" id="inputName" name="name" [(ngModel)]="name" placeholder="Enter your name" required>
+              <input type="text" id="inputName" name="name" [(ngModel)]="name" placeholder="Enter your name" #inputName="ngModel" required pattern="^[A-Za-z]+$">
+              <div class="form-text text-danger" *ngIf="inputName.touched && !inputName.valid">
+                  <small *ngIf="inputName.errors.required">Username is required!</small>
+                  <small *ngIf="inputName.errors.pattern">Invalid username format!</small>
+                </div>
             </div>
+
+            <!-- password -->
             <div class="form-group">
               <label for="inputPassword" class="sr-only">password</label>
-              <input type="password" id="inputPassword" name="password" [(ngModel)]="password" placeholder="Enter password" required>
+              <input type="password" id="inputPassword" name="password" [(ngModel)]="password" placeholder="Enter password" #inputPassword="ngModel" required pattern="^.{6,}">
+              <div class="form-text text-danger" *ngIf="inputPassword.touched && !inputPassword.valid">
+                  <small *ngIf="inputPassword.errors.required">Password is required!</small>
+                  <small *ngIf="inputPassword.errors.pattern">Password should have at least 6 characters!</small>
+                </div>
             </div>
-            <input type="submit" value="Login" class="btn-primary">
-          <!-- <input type="text" name="name" [(ngModel)]="name" placeholder="Enter your Username" required>
-          <input type="text" name="password" [(ngModel)]="password" placeholder="Enter password" required>
-          <input type="submit" value="Signup" class="btn-primary"> -->
+
+            <!-- Log in button -->
+            <button  color="info" block="true" type="submit" [disabled]="!f.valid">Log in</button>
+
       </form>
     </div>

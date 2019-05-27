@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/User';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from './../../environments/environment';
+const url = environment.url;
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  Url:string = "http://localhost:3000/user/createUsers";
+  Url:string = `${url}/user/createUsers`;
   token;
 
   constructor(private http:HttpClient) { }
@@ -38,7 +40,7 @@ export class AuthService {
 
   login(user): Observable<any>{
     console.log(`${user.name}  ${user.password}`)
-    return this.http.post("http://localhost:3000/user/login", user, this.getHttpOp())
+    return this.http.post(`${url}/user/login`, user, this.getHttpOp())
     
   }
 }

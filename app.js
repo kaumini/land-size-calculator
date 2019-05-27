@@ -6,9 +6,11 @@ var cors = require('cors');
 var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var morgan = require('morgan')
+var morgan = require('morgan');
+const path = require("path");
 
-app.use(express.static('F:/CSE ACA/my stuff/Semester 5/Software Engineering Project/project_calculator/client'));
+
+app.use('/',express.static(path.join(__dirname,'dist/land-size-calculator')));
 app.use(bodyParser.json());
 app.use(cors());
 app.use(morgan('tiny'));
@@ -20,16 +22,26 @@ Users = require('./models/users');
 //connect to mongoose
 mongoose.connect('mongodb://localhost/landcalculator');
 var db = mongoose.connection;
-app.listen(3000);
-console.log('Running on port 3000....'); 
+
 
 const user = require('./routes/user.js');
 const payment = require('./routes/payment.js');
 const calculation = require('./routes/calculation.js');
 
+
+
+
 app.use('/user',user);
 app.use('/payment',payment);
 app.use('/calculation',calculation);
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist/land-size-calculator/index.html'));
+});
+
+app.listen(process.env.PORT || 3000, function(){
+    console.log(`Running on port ${process.env.PORT}....`); 
+});
 
 
 // app.get('/', function(req, res){

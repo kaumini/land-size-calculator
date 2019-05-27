@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
-
+import { environment } from './../../environments/environment';
+const url = environment.url;
 
 
 
@@ -34,10 +35,10 @@ export class CalculationService {
   // Signup
   save(cal) {
     // console.log(`${user.name}  ${user.password}  ${user.premium}`)
-    return this.http.post('http://localhost:3000/calculation/saveCalculation', cal, this.getHttpOp());
+    return this.http.post(`${url}/calculation/saveCalculation`, cal, this.getHttpOp());
   }
 
   getCal(uid){
-    return this.http.get('http://localhost:3000/calculation/getCalculations',this.getHttpOp());
+    return this.http.get(`${url}/calculation/getCalculations`,this.getHttpOp());
   }
 }

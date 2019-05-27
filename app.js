@@ -39,8 +39,8 @@ app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/land-size-calculator/index.html'));
 });
 
-app.listen(process.env.PORT || 3000, function(){
-    console.log(`Running on port ${process.env.PORT}....`); 
+app.listen(8081, function(){
+    console.log(`Running on port 8081....`); 
 });
 
 

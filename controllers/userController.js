@@ -3,8 +3,6 @@
  const bcrypt = require('bcrypt');
  const express = require("express");
  const jwt = require('jsonwebtoken');
- const  {secret} = require("../env_config");
-
  const router = express.Router();
 
 

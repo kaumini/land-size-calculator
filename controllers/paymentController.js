@@ -3,7 +3,6 @@ const uuidv1 = require('uuid/v1');
 const bcrypt = require('bcrypt');
 const express = require("express");
 const jwt = require('jsonwebtoken');
-const  {secret} = require("../env_config");
 
 const stripe = require('stripe')('sk_test_v7gXLbxH1k5vgaJ9JCeXZVNf00O3LZBWs3');
 

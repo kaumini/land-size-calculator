@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  url: "http://land-size.herokuapp.com"
+  url: "http://68.183.92.46"
 };

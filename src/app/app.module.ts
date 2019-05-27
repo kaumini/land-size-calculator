@@ -16,6 +16,9 @@ import { NavbarComponent } from './components/layout/navbar/navbar.component';
 import { PaymentsComponent } from './components/payments/payments.component';
 import { NgxStripeModule } from 'ngx-stripe';
 import { PreviousCalComponent } from './components/previous-cal/previous-cal.component';
+import { CalculationService } from './services/calculation.service';
+import { PaymentsService } from './services/payments.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +42,7 @@ import { PreviousCalComponent } from './components/previous-cal/previous-cal.com
 
     })
   ],
-  providers: [AuthService],
+  providers: [AuthService,CalculationService,PaymentsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

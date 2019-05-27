@@ -30,14 +30,15 @@ exports.pay =async (req, res) => {
         //     success : true,
         //     token : [uid, token,user]
         // }
-        // user.save().then(()=>{
-        //     res.json({msg})
-        // })
+        user.save();
         let msg = {
             success : true,
             msg : [uid, token,user]
         }
         console.log(msg);
+
+        const user1= await User.findOne({uid:req.body.uid});
+        console.log(user1);
         res.status(200).json(msg);
     });
 };

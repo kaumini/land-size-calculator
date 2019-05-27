@@ -16,7 +16,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../../../services/auth.service';
 import { AgmCoreModule } from '@agm/core';
 import { PaymentsComponent } from '../../../components/payments/payments.component';
-import { NgxStripeModule } from 'ngx-stripe';
 import { PreviousCalComponent } from '../../../components/previous-cal/previous-cal.component';
 
 
@@ -42,7 +41,6 @@ describe('HeaderComponent', () => {
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
-        NgxStripeModule.forRoot('pk_test_2fnIOolHoi0NEFUJmF1KXHp200SfxcJEwc'),
         AgmCoreModule.forRoot({
           apiKey: 'AIzaSyDAcszHq1T04XcAuNpguUvldlMW2xMLXa8 '
     
